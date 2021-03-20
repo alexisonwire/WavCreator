@@ -58,7 +58,6 @@ namespace WavCreater
         private double SawtoothWaveCreate(uint cnt, double amplitude, double refFreq, double samplingHz)
         {
             double data = 0f;
-            double freq = 250f;
             for (int i = 1; i <= 15; i++) /* 15倍音までの重ね合わせ */
             {
                 data += amplitude / i * Math.Sin(2.0 * Math.PI * refFreq * i * cnt / samplingHz);
@@ -69,7 +68,6 @@ namespace WavCreater
         private double PulseWaveCreate(uint cnt, double amplitude, double refFreq, double samplingHz)
         {
             double data = 0f;
-            double freq = 250f;
             for (int i = 1; i <= 15; i++) /* 15倍音までの重ね合わせ */
             {
                 if (i % 2 == 1) /* 奇数次の倍音のみ重ね合わせる */
