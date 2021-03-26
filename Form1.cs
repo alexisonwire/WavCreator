@@ -116,13 +116,13 @@ namespace WavCreater
                     }
                 }
             }
-
             string aaa = null;
             for (int i = 0; i <= 1000; i++) 
             {
-                aaa += dataList[i].ToString() + Environment.NewLine; ;
+                aaa += dataList[i].ToString() + Environment.NewLine;
+                chartSampling.Series[0].Points.AddXY(i, dataList[i]);
             }
-            aaa = aaa;
+            ;
         }
     }
 }
