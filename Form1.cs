@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 
-namespace WavCreater
+namespace WavCreator
 {
     public partial class Form1 : Form
     {
@@ -102,46 +102,6 @@ namespace WavCreater
             return data;
         }
 
-        double phase = 0.0;   // 初期値
-        double sawtooth(double amplitude, double freq, double samplingHz)
-        {
-            phase += freq / samplingHz;
-            phase -= Math.Floor(phase);       // 整数部分を引き算
-            return phase * amplitude;
-        }
-
-        double triangle(double amplitude, double freq, double samplingHz)
-        {
-            phase += freq / samplingHz;
-            phase -= Math.Floor(phase);       // 整数部分を引き算
-
-            double tr;
-            if (phase > 0.5)
-            {
-                tr = 1.0 - phase;    // 0.5 より大きいので反転
-            }
-            else
-            {
-                tr = phase;          // そうでなければそのまま
-            }
-            return tr * amplitude;
-        }
-
-        double pulse(double amplitude, double freq, double samplingHz)
-        {
-            phase += freq / samplingHz;
-            phase -= Math.Floor(phase);       // 整数部分を引き算
-            if (phase > 0.5)
-            {
-                return amplitude;
-            }
-            else
-            {
-                return 0.0;
-            }
-        }
-
-
         private void WriteAudio(uint length)
         {
             string FileName = GetSaveFileName();
@@ -156,6 +116,9 @@ namespace WavCreater
                     Hdr.NumberOfBytesOfWaveData = Hdr.BlockSize * DataLength;
                     binWriter.Write(Hdr.Bytes);
                     befPhase = 0;
+
+                    var waveCreator = new WaveCreator();
+
                     for (UInt32 cnt = 0; cnt < DataLength; cnt++)
                     {
                         double Radian = (double)cnt / Hdr.SamplingRate;
@@ -165,19 +128,10 @@ namespace WavCreater
                         double amplitude = 5;
                         double refFreq = 100;
 
-                        //Wave += Math.Sin(Radian * 1336);
-                        //Wave += Math.Sin(Radian * 941);
-
-                        //Wave /= 2;
-
-                        //Wave += TriWaveCreate(cnt, amplitude, refFreq, Hdr.SamplingRate);
-                        //Wave += SawtoothWaveCreate(cnt, amplitude, refFreq, Hdr.SamplingRate);
-                        //Wave += PulseWaveCreate(cnt, amplitude, refFreq, Hdr.SamplingRate);
-                        //Debug.WriteLine(Wave);
-
-                        //Wave += sawtooth(amplitude,refFreq, Hdr.SamplingRate);
-                        //Wave += pulse(amplitude, refFreq, Hdr.SamplingRate);
-                        Wave += triangle(amplitude, refFreq, Hdr.SamplingRate);
+                        //Wave += waveCreator.pulse(amplitude, refFreq, Hdr.SamplingRate);
+                        //Wave += waveCreator.sawtooth(amplitude, refFreq, Hdr.SamplingRate);
+                        //Wave += waveCreator.triangle(amplitude, refFreq, Hdr.SamplingRate);
+                        Wave += waveCreator.sineWave(amplitude, refFreq, Hdr.SamplingRate);
 
 
                         dataList.Add(Wave);
