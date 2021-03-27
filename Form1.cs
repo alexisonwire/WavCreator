@@ -61,6 +61,7 @@ namespace WavCreater
             for (int i = 1; i <= 15; i++) /* 15倍音までの重ね合わせ */
             {
                 data += amplitude / i * Math.Sin(2.0 * Math.PI * refFreq * i * cnt / samplingHz);
+                //data += amplitude / refFreq * i * cnt / samplingHz;
             }
             return data;
         }
@@ -78,6 +79,68 @@ namespace WavCreater
             return data;
         }
 
+        double befPhase;
+
+        private double TriWaveCreate(uint cnt, double amplitude, double refFreq, double samplingHz)
+        {
+            double data = 0f;
+            for (int i = 1; i <= 15; i++) /* 15倍音までの重ね合わせ */
+            {
+                if (befPhase <= amplitude)
+                {
+                    //data += amplitude / i * Math.Sin(2.0 * Math.PI * refFreq * i * cnt / samplingHz);
+                    data += amplitude / refFreq * i * cnt / samplingHz;
+                }
+                else
+                {
+                    //data += amplitude - (amplitude / i * Math.Sin(2.0 * Math.PI * refFreq * i * cnt / samplingHz));
+                    data += amplitude - (amplitude / refFreq * i * cnt / samplingHz);
+
+                }
+            }
+            befPhase -= data;
+            return data;
+        }
+
+        double phase = 0.0;   // 初期値
+        double sawtooth(double amplitude, double freq, double samplingHz)
+        {
+            phase += freq / samplingHz;
+            phase -= Math.Floor(phase);       // 整数部分を引き算
+            return phase * amplitude;
+        }
+
+        double triangle(double amplitude, double freq, double samplingHz)
+        {
+            phase += freq / samplingHz;
+            phase -= Math.Floor(phase);       // 整数部分を引き算
+
+            double tr;
+            if (phase > 0.5)
+            {
+                tr = 1.0 - phase;    // 0.5 より大きいので反転
+            }
+            else
+            {
+                tr = phase;          // そうでなければそのまま
+            }
+            return tr * amplitude;
+        }
+
+        double pulse(double amplitude, double freq, double samplingHz)
+        {
+            phase += freq / samplingHz;
+            phase -= Math.Floor(phase);       // 整数部分を引き算
+            if (phase > 0.5)
+            {
+                return amplitude;
+            }
+            else
+            {
+                return 0.0;
+            }
+        }
+
 
         private void WriteAudio(uint length)
         {
@@ -92,6 +155,7 @@ namespace WavCreater
                     UInt32 DataLength = Hdr.SamplingRate * length;
                     Hdr.NumberOfBytesOfWaveData = Hdr.BlockSize * DataLength;
                     binWriter.Write(Hdr.Bytes);
+                    befPhase = 0;
                     for (UInt32 cnt = 0; cnt < DataLength; cnt++)
                     {
                         double Radian = (double)cnt / Hdr.SamplingRate;
@@ -99,15 +163,23 @@ namespace WavCreater
 
                         double Wave = 0;
                         double amplitude = 5;
-                        double refFreq = 250;
+                        double refFreq = 100;
+
                         //Wave += Math.Sin(Radian * 1336);
                         //Wave += Math.Sin(Radian * 941);
 
                         //Wave /= 2;
 
-                        Wave += SawtoothWaveCreate(cnt, amplitude, refFreq, Hdr.SamplingRate);
-                        Wave += PulseWaveCreate(cnt, amplitude, refFreq, Hdr.SamplingRate);
+                        //Wave += TriWaveCreate(cnt, amplitude, refFreq, Hdr.SamplingRate);
+                        //Wave += SawtoothWaveCreate(cnt, amplitude, refFreq, Hdr.SamplingRate);
+                        //Wave += PulseWaveCreate(cnt, amplitude, refFreq, Hdr.SamplingRate);
                         //Debug.WriteLine(Wave);
+
+                        //Wave += sawtooth(amplitude,refFreq, Hdr.SamplingRate);
+                        //Wave += pulse(amplitude, refFreq, Hdr.SamplingRate);
+                        Wave += triangle(amplitude, refFreq, Hdr.SamplingRate);
+
+
                         dataList.Add(Wave);
                         Int16 Data = (Int16)(Wave * 30000);
 
@@ -117,7 +189,7 @@ namespace WavCreater
                 }
             }
             string aaa = null;
-            for (int i = 0; i <= 1000; i++) 
+            for (int i = 0; i <= 2000; i++)
             {
                 aaa += dataList[i].ToString() + Environment.NewLine;
                 chartSampling.Series[0].Points.AddXY(i, dataList[i]);
