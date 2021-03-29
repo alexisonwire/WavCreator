@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
-using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace WavCreator
 {
@@ -24,7 +17,8 @@ namespace WavCreator
         {
             SineWave,
             SawtoothWave,
-            Step
+            TriangleWave,
+            PulseWave
         }
 
         private string GetSaveFileName()
@@ -52,61 +46,24 @@ namespace WavCreator
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            WriteAudio((uint)numDataLength.Value);
-        }
-
-        private double SawtoothWaveCreate(uint cnt, double amplitude, double refFreq, double samplingHz)
-        {
-            double data = 0f;
-            for (int i = 1; i <= 15; i++) /* 15倍音までの重ね合わせ */
+            double freq = (double)numFreqHz.Value;
+            double amplitude = (double)numAmplitude.Value;
+            double offset = (double)numOffset.Value;
+            uint dataLen = (uint)numDataLength.Value;
+            Mode mode = (Mode)cmbMode.SelectedItem;
+            var wavFileName = WriteAudio(amplitude, offset, freq, dataLen, mode);
+            if (wavFileName != null)
             {
-                data += amplitude / i * Math.Sin(2.0 * Math.PI * refFreq * i * cnt / samplingHz);
-                //data += amplitude / refFreq * i * cnt / samplingHz;
+                var player = new System.Media.SoundPlayer(wavFileName);
+                player.Play();
             }
-            return data;
         }
 
-        private double PulseWaveCreate(uint cnt, double amplitude, double refFreq, double samplingHz)
-        {
-            double data = 0f;
-            for (int i = 1; i <= 15; i++) /* 15倍音までの重ね合わせ */
-            {
-                if (i % 2 == 1) /* 奇数次の倍音のみ重ね合わせる */
-                {
-                    data += amplitude / i * Math.Sin(2.0 * Math.PI * refFreq * i * cnt / samplingHz);
-                }
-            }
-            return data;
-        }
-
-        double befPhase;
-
-        private double TriWaveCreate(uint cnt, double amplitude, double refFreq, double samplingHz)
-        {
-            double data = 0f;
-            for (int i = 1; i <= 15; i++) /* 15倍音までの重ね合わせ */
-            {
-                if (befPhase <= amplitude)
-                {
-                    //data += amplitude / i * Math.Sin(2.0 * Math.PI * refFreq * i * cnt / samplingHz);
-                    data += amplitude / refFreq * i * cnt / samplingHz;
-                }
-                else
-                {
-                    //data += amplitude - (amplitude / i * Math.Sin(2.0 * Math.PI * refFreq * i * cnt / samplingHz));
-                    data += amplitude - (amplitude / refFreq * i * cnt / samplingHz);
-
-                }
-            }
-            befPhase -= data;
-            return data;
-        }
-
-        private void WriteAudio(uint length)
+        private string WriteAudio(double amplitude, double offset, double freq, uint length, Mode mode)
         {
             string FileName = GetSaveFileName();
+            if (FileName == null) { return null; }
             var dataList = new List<double>();
-
             using (FileStream filStream = new FileStream(FileName, FileMode.Create, FileAccess.Write))
             {
                 using (BinaryWriter binWriter = new BinaryWriter(filStream))
@@ -115,25 +72,25 @@ namespace WavCreator
                     UInt32 DataLength = Hdr.SamplingRate * length;
                     Hdr.NumberOfBytesOfWaveData = Hdr.BlockSize * DataLength;
                     binWriter.Write(Hdr.Bytes);
-                    befPhase = 0;
-
                     var waveCreator = new WaveCreator();
-
                     for (UInt32 cnt = 0; cnt < DataLength; cnt++)
                     {
-                        double Radian = (double)cnt / Hdr.SamplingRate;
-                        Radian *= 2 * Math.PI;
-
                         double Wave = 0;
-                        double amplitude = 5;
-                        double refFreq = 100;
-
-                        //Wave += waveCreator.pulse(amplitude, refFreq, Hdr.SamplingRate);
-                        //Wave += waveCreator.sawtooth(amplitude, refFreq, Hdr.SamplingRate);
-                        //Wave += waveCreator.triangle(amplitude, refFreq, Hdr.SamplingRate);
-                        Wave += waveCreator.sineWave(amplitude, refFreq, Hdr.SamplingRate);
-
-
+                        switch (mode)
+                        {
+                            case Mode.SineWave:
+                                Wave += waveCreator.SineWave(amplitude, offset, freq, Hdr.SamplingRate);
+                                break;
+                            case Mode.SawtoothWave:
+                                Wave += waveCreator.SawtoothWave(amplitude, offset, freq, Hdr.SamplingRate);
+                                break;
+                            case Mode.TriangleWave:
+                                Wave += waveCreator.TriangleWave(amplitude, offset, freq, Hdr.SamplingRate);
+                                break;
+                            case Mode.PulseWave:
+                                Wave += waveCreator.PulseWave(amplitude, offset, freq, Hdr.SamplingRate);
+                                break;
+                        }
                         dataList.Add(Wave);
                         Int16 Data = (Int16)(Wave * 30000);
 
@@ -143,12 +100,13 @@ namespace WavCreator
                 }
             }
             string aaa = null;
+            chartSampling.Series[0].Points.Clear();
             for (int i = 0; i <= 2000; i++)
             {
                 aaa += dataList[i].ToString() + Environment.NewLine;
                 chartSampling.Series[0].Points.AddXY(i, dataList[i]);
             }
-            ;
+            return FileName;
         }
     }
 }

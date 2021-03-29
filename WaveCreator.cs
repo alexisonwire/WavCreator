@@ -1,39 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WavCreator
 {
     class WaveCreator
     {
-        public double duty { get; set; } = 0.5;
+        public double DutyCycle { get; set; } = 0.5;
         private double sinePhase = 0.0;
         private double sawtoothPhase = 0.0;
         private double trianglePhase = 0.0;
         private double pulsePhase = 0.0;
 
-        public double sineWave(double amplitude, double freq, double samplingHz)
+        public double SineWave(double amplitude, double offset, double freq, double samplingHz)
         {
             sinePhase += freq / samplingHz;
-            sinePhase -= Math.Floor(sinePhase);       // 整数部分を引き算
-            return Math.Sin(2 * Math.PI * sinePhase) * amplitude;
+            sinePhase -= Math.Floor(sinePhase);
+            return Math.Sin(2 * Math.PI * sinePhase) * amplitude + offset;
         }
 
-        public double sawtoothWave(double amplitude, double freq, double samplingHz)
+        public double SawtoothWave(double amplitude, double offset, double freq, double samplingHz)
         {
             sawtoothPhase += freq / samplingHz;
-            sawtoothPhase -= Math.Floor(sawtoothPhase);       // 整数部分を引き算
-            return sawtoothPhase * amplitude;
+            sawtoothPhase -= Math.Floor(sawtoothPhase);
+            return sawtoothPhase * amplitude + offset;
         }
 
-        public double triangleWave(double amplitude, double freq, double samplingHz)
+        public double TriangleWave(double amplitude, double offset, double freq, double samplingHz)
         {
             trianglePhase += freq / samplingHz;
-            trianglePhase -= Math.Floor(trianglePhase);       // 整数部分を引き算
+            trianglePhase -= Math.Floor(trianglePhase);
             double tr;
-            if (trianglePhase > duty)
+            if (trianglePhase > DutyCycle)
             {
                 tr = 1.0 - trianglePhase;
             }
@@ -41,20 +37,20 @@ namespace WavCreator
             {
                 tr = trianglePhase;
             }
-            return tr * amplitude;
+            return tr * amplitude + offset;
         }
 
-        public double pulseWave(double amplitude, double freq, double samplingHz)
+        public double PulseWave(double amplitude, double offset, double freq, double samplingHz)
         {
             pulsePhase += freq / samplingHz;
-            pulsePhase -= Math.Floor(pulsePhase);       // 整数部分を引き算
-            if (pulsePhase > duty)
+            pulsePhase -= Math.Floor(pulsePhase);
+            if (pulsePhase > DutyCycle)
             {
-                return amplitude;
+                return amplitude + offset;
             }
             else
             {
-                return 0.0;
+                return 0.0 + offset;
             }
         }
     }

@@ -29,8 +29,8 @@ namespace WavCreator
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.button1 = new System.Windows.Forms.Button();
             this.numDataLength = new System.Windows.Forms.NumericUpDown();
             this.cmbMode = new System.Windows.Forms.ComboBox();
@@ -64,6 +64,16 @@ namespace WavCreator
             this.numDataLength.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.numDataLength.Location = new System.Drawing.Point(77, 102);
             this.numDataLength.Margin = new System.Windows.Forms.Padding(2);
+            this.numDataLength.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numDataLength.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numDataLength.Name = "numDataLength";
             this.numDataLength.Size = new System.Drawing.Size(119, 23);
             this.numDataLength.TabIndex = 1;
@@ -90,42 +100,42 @@ namespace WavCreator
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chartSampling.BorderlineColor = System.Drawing.Color.Black;
             this.chartSampling.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisX.IsMarginVisible = false;
-            chartArea2.AxisX.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisX.LogarithmBase = 20D;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisX.Title = "Sampling";
-            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            chartArea2.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisY.Title = "Data";
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            chartArea2.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea2.AxisY2.MajorGrid.Enabled = false;
-            chartArea2.AxisY2.MajorTickMark.Enabled = false;
-            chartArea2.BackColor = System.Drawing.Color.White;
-            chartArea2.CursorX.IsUserEnabled = true;
-            chartArea2.CursorY.IsUserEnabled = true;
-            chartArea2.IsSameFontSizeForAllAxes = true;
-            chartArea2.Name = "ChartArea1";
-            this.chartSampling.ChartAreas.Add(chartArea2);
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX.IsMarginVisible = false;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisX.LogarithmBase = 20D;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisX.Title = "Sampling";
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            chartArea1.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisY.Title = "Data";
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            chartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea1.AxisY2.MajorGrid.Enabled = false;
+            chartArea1.AxisY2.MajorTickMark.Enabled = false;
+            chartArea1.BackColor = System.Drawing.Color.White;
+            chartArea1.CursorX.IsUserEnabled = true;
+            chartArea1.CursorY.IsUserEnabled = true;
+            chartArea1.IsSameFontSizeForAllAxes = true;
+            chartArea1.Name = "ChartArea1";
+            this.chartSampling.ChartAreas.Add(chartArea1);
             this.chartSampling.Location = new System.Drawing.Point(228, 13);
             this.chartSampling.Margin = new System.Windows.Forms.Padding(4);
             this.chartSampling.Name = "chartSampling";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.MarkerBorderWidth = 3;
-            series2.MarkerSize = 1;
-            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series2.Name = "Input";
-            this.chartSampling.Series.Add(series2);
-            this.chartSampling.Size = new System.Drawing.Size(612, 334);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.MarkerBorderWidth = 3;
+            series1.MarkerSize = 1;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series1.Name = "Input";
+            this.chartSampling.Series.Add(series1);
+            this.chartSampling.Size = new System.Drawing.Size(440, 208);
             this.chartSampling.TabIndex = 14;
             this.chartSampling.Text = "chart1";
             // 
@@ -153,23 +163,40 @@ namespace WavCreator
             // 
             // numFreqHz
             // 
+            this.numFreqHz.DecimalPlaces = 3;
             this.numFreqHz.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.numFreqHz.Location = new System.Drawing.Point(77, 27);
             this.numFreqHz.Margin = new System.Windows.Forms.Padding(2);
+            this.numFreqHz.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numFreqHz.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
             this.numFreqHz.Name = "numFreqHz";
             this.numFreqHz.Size = new System.Drawing.Size(119, 23);
             this.numFreqHz.TabIndex = 1;
             this.numFreqHz.Value = new decimal(new int[] {
-            10,
+            100,
             0,
             0,
             0});
             // 
             // numAmplitude
             // 
+            this.numAmplitude.DecimalPlaces = 3;
             this.numAmplitude.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.numAmplitude.Location = new System.Drawing.Point(77, 52);
             this.numAmplitude.Margin = new System.Windows.Forms.Padding(2);
+            this.numAmplitude.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.numAmplitude.Name = "numAmplitude";
             this.numAmplitude.Size = new System.Drawing.Size(119, 23);
             this.numAmplitude.TabIndex = 1;
@@ -181,9 +208,15 @@ namespace WavCreator
             // 
             // numOffset
             // 
+            this.numOffset.DecimalPlaces = 3;
             this.numOffset.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.numOffset.Location = new System.Drawing.Point(77, 77);
             this.numOffset.Margin = new System.Windows.Forms.Padding(2);
+            this.numOffset.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.numOffset.Name = "numOffset";
             this.numOffset.Size = new System.Drawing.Size(119, 23);
             this.numOffset.TabIndex = 1;
@@ -197,7 +230,7 @@ namespace WavCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 360);
+            this.ClientSize = new System.Drawing.Size(684, 234);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.chartSampling);
             this.Margin = new System.Windows.Forms.Padding(2);
