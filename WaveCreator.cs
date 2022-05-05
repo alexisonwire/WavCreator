@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace WavCreator
 {
@@ -10,21 +11,23 @@ namespace WavCreator
         private double trianglePhase = 0.0;
         private double pulsePhase = 0.0;
 
-        public double SineWave(double amplitude, double offset, double freq, double samplingHz)
+        public double SineWave(double amplitude,  double freq, double samplingHz)
         {
+            //Debug.WriteLine(Math.Sin(cnt * freq * (2 * Math.PI) / samplingHz) * amplitude);
             sinePhase += freq / samplingHz;
             sinePhase -= Math.Floor(sinePhase);
-            return Math.Sin(2 * Math.PI * sinePhase) * amplitude + offset;
+            //return Math.Sin(cnt * freq * (2 * Math.PI) / samplingHz) * amplitude;
+            return Math.Sin(2 * Math.PI * sinePhase) * amplitude;
         }
 
-        public double SawtoothWave(double amplitude, double offset, double freq, double samplingHz)
+        public double SawtoothWave(double amplitude,double freq, double samplingHz)
         {
             sawtoothPhase += freq / samplingHz;
             sawtoothPhase -= Math.Floor(sawtoothPhase);
-            return sawtoothPhase * amplitude + offset;
+            return sawtoothPhase * amplitude;
         }
 
-        public double TriangleWave(double amplitude, double offset, double freq, double samplingHz)
+        public double TriangleWave(double amplitude, double freq, double samplingHz)
         {
             trianglePhase += freq / samplingHz;
             trianglePhase -= Math.Floor(trianglePhase);
@@ -37,20 +40,20 @@ namespace WavCreator
             {
                 tr = trianglePhase;
             }
-            return tr * amplitude + offset;
+            return tr * amplitude;
         }
 
-        public double PulseWave(double amplitude, double offset, double freq, double samplingHz)
+        public double PulseWave(double amplitude,double freq, double samplingHz)
         {
             pulsePhase += freq / samplingHz;
             pulsePhase -= Math.Floor(pulsePhase);
             if (pulsePhase > DutyCycle)
             {
-                return amplitude + offset;
+                return amplitude;
             }
             else
             {
-                return 0.0 + offset;
+                return 0.0;
             }
         }
     }
