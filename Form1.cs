@@ -64,26 +64,34 @@ namespace WavCreator
         }
 
         string wavFileName;
+        System.Media.SoundPlayer player;
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            player?.Stop();
             double freq = (double)numFreqHz.Value;
             double amplitude = (double)numAmplitude.Value;
             double offset = (double)numOffset.Value;
             uint dataLen = (uint)numDataLength.Value;
             Mode mode = (Mode)cmbMode.SelectedItem;
             wavFileName = WriteAudio(amplitude, offset, freq, dataLen, mode);
-            Task task = Task.Run(() =>
-            {
-                wavPlay();
-            });
+            //Task task = Task.Run(() =>
+            //{
+            //    wavPlay();
+            //});
+            wavPlay();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            player?.Stop();
         }
 
         private void wavPlay()
         {
             if (wavFileName != null)
             {
-                var player = new System.Media.SoundPlayer(wavFileName);
+                player = new System.Media.SoundPlayer(wavFileName);
                 player.Play();
             }
         }
@@ -172,5 +180,6 @@ namespace WavCreator
             }
             return FileName;
         }
+
     }
 }
