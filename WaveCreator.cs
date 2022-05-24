@@ -13,10 +13,8 @@ namespace WavCreator
 
         public double SineWave(double amplitude,  double freq, double samplingHz)
         {
-            //Debug.WriteLine(Math.Sin(cnt * freq * (2 * Math.PI) / samplingHz) * amplitude);
             sinePhase += freq / samplingHz;
             sinePhase -= Math.Floor(sinePhase);
-            //return Math.Sin(cnt * freq * (2 * Math.PI) / samplingHz) * amplitude;
             return Math.Sin(2 * Math.PI * sinePhase) * amplitude;
         }
 

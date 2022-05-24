@@ -92,10 +92,9 @@ namespace WavCreator
             if (wavFileName != null)
             {
                 player = new System.Media.SoundPlayer(wavFileName);
-                player.Play();
+                player?.Play();
             }
         }
-
 
         private string WriteAudio(double amplitude, double offset, double freq, uint length, Mode mode)
         {
@@ -104,7 +103,7 @@ namespace WavCreator
 
             if (FileName == null) { return null; }
             var dataList = new List<double>();
-            var dataList3 = new List<double>();
+            //var dataList3 = new List<double>();
             UInt32 samplingNum = 0;
             using (FileStream filStream = new FileStream(FileName, FileMode.Create, FileAccess.Write))
             {
@@ -121,29 +120,27 @@ namespace WavCreator
 
                     for (UInt32 cnt = 0; cnt < DataLength; cnt++)
                     {
-                        var aaa = new Random();
-                        var rand = aaa.Next(1, 5);
-
+                        //var aaa = new Random();
+                        //var rand = aaa.Next(1, 5);
                         //freq = tmpfreq * rand;
-                        double Wave = 0;
+                        double wave = 0;
                         switch (mode)
                         {
                             case Mode.SineWave:
-                                Wave += waveCreator.SineWave(amplitude, freq, Hdr.SamplingRate);
+                                wave += waveCreator.SineWave(amplitude, freq, Hdr.SamplingRate);
                                 break;
                             case Mode.SawtoothWave:
-                                Wave += waveCreator.SawtoothWave(amplitude, freq, Hdr.SamplingRate);
+                                wave += waveCreator.SawtoothWave(amplitude, freq, Hdr.SamplingRate);
                                 break;
                             case Mode.TriangleWave:
-                                Wave += waveCreator.TriangleWave(amplitude, freq, Hdr.SamplingRate);
+                                wave += waveCreator.TriangleWave(amplitude, freq, Hdr.SamplingRate);
                                 break;
                             case Mode.PulseWave:
-                                Wave += waveCreator.PulseWave(amplitude, freq, Hdr.SamplingRate);
-
+                                wave += waveCreator.PulseWave(amplitude, freq, Hdr.SamplingRate);
                                 break;
                         }
-                        Wave += offset;
-                        dataList.Add(Wave);
+                        wave += offset;
+                        dataList.Add(wave);
                     }
 
                     foreach (var item in dataList)
@@ -152,22 +149,20 @@ namespace WavCreator
                         binWriter.Write(BitConverter.GetBytes(Data));
                         binWriter.Write(BitConverter.GetBytes(Data));
                     }
-                    var dataList2 = new List<double>(dataList);
-
-                    //uint ucnt = 0;
-                    //foreach (var item in dataList)
+                    //var dataList2 = new List<double>(dataList);
+                    ////uint ucnt = 0;
+                    ////foreach (var item in dataList)
+                    ////{
+                    ////    Delay(dataList, dataList2, Hdr.SamplingRate, ucnt);
+                    ////    ucnt++;
+                    ////}
+                    //foreach (var item in dataList2)
                     //{
-                    //    Delay(dataList, dataList2, Hdr.SamplingRate, ucnt);
-                    //    ucnt++;
+                    //    Int16 Data = (Int16)(item * 30000);
+                    //    binWriter.Write(BitConverter.GetBytes(Data));
+                    //    binWriter.Write(BitConverter.GetBytes(Data));
                     //}
-
-                    foreach (var item in dataList2)
-                    {
-                        Int16 Data = (Int16)(item * 30000);
-                        binWriter.Write(BitConverter.GetBytes(Data));
-                        binWriter.Write(BitConverter.GetBytes(Data));
-                    }
-                    dataList3 = dataList2;
+                    //dataList3 = dataList2;
                 }
                 chartSampling.Series[0].Points.Clear();
 

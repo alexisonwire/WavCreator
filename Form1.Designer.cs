@@ -29,8 +29,8 @@ namespace WavCreator
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.button1 = new System.Windows.Forms.Button();
             this.numDataLength = new System.Windows.Forms.NumericUpDown();
             this.cmbMode = new System.Windows.Forms.ComboBox();
@@ -58,16 +58,16 @@ namespace WavCreator
             this.button1.Location = new System.Drawing.Point(2, 2);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(71, 21);
+            this.button1.Size = new System.Drawing.Size(71, 24);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Play";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // numDataLength
             // 
             this.numDataLength.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numDataLength.Location = new System.Drawing.Point(77, 102);
+            this.numDataLength.Location = new System.Drawing.Point(77, 114);
             this.numDataLength.Margin = new System.Windows.Forms.Padding(2);
             this.numDataLength.Maximum = new decimal(new int[] {
             1000,
@@ -105,41 +105,41 @@ namespace WavCreator
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chartSampling.BorderlineColor = System.Drawing.Color.Black;
             this.chartSampling.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisX.IsMarginVisible = false;
-            chartArea2.AxisX.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisX.LogarithmBase = 20D;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisX.Title = "Sampling";
-            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            chartArea2.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea2.AxisY.Title = "Data";
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            chartArea2.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea2.AxisY2.MajorGrid.Enabled = false;
-            chartArea2.AxisY2.MajorTickMark.Enabled = false;
-            chartArea2.BackColor = System.Drawing.Color.White;
-            chartArea2.CursorX.IsUserEnabled = true;
-            chartArea2.CursorY.IsUserEnabled = true;
-            chartArea2.IsSameFontSizeForAllAxes = true;
-            chartArea2.Name = "ChartArea1";
-            this.chartSampling.ChartAreas.Add(chartArea2);
+            chartArea3.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea3.AxisX.IsMarginVisible = false;
+            chartArea3.AxisX.LineColor = System.Drawing.Color.Silver;
+            chartArea3.AxisX.LogarithmBase = 20D;
+            chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea3.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Silver;
+            chartArea3.AxisX.Title = "Sampling";
+            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            chartArea3.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea3.AxisY.LineColor = System.Drawing.Color.Silver;
+            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea3.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
+            chartArea3.AxisY.MinorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea3.AxisY.Title = "Data";
+            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Meiryo UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            chartArea3.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea3.AxisY2.MajorGrid.Enabled = false;
+            chartArea3.AxisY2.MajorTickMark.Enabled = false;
+            chartArea3.BackColor = System.Drawing.Color.White;
+            chartArea3.CursorX.IsUserEnabled = true;
+            chartArea3.CursorY.IsUserEnabled = true;
+            chartArea3.IsSameFontSizeForAllAxes = true;
+            chartArea3.Name = "ChartArea1";
+            this.chartSampling.ChartAreas.Add(chartArea3);
             this.chartSampling.Location = new System.Drawing.Point(228, 13);
             this.chartSampling.Margin = new System.Windows.Forms.Padding(4);
             this.chartSampling.Name = "chartSampling";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.MarkerBorderWidth = 3;
-            series2.MarkerSize = 1;
-            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series2.Name = "Input";
-            this.chartSampling.Series.Add(series2);
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.MarkerBorderWidth = 3;
+            series3.MarkerSize = 1;
+            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series3.Name = "Input";
+            this.chartSampling.Series.Add(series3);
             this.chartSampling.Size = new System.Drawing.Size(585, 345);
             this.chartSampling.TabIndex = 14;
             this.chartSampling.Text = "chart1";
@@ -163,20 +163,20 @@ namespace WavCreator
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 13);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 173);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 180);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
             // numFreqHz
             // 
             this.numFreqHz.DecimalPlaces = 3;
             this.numFreqHz.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numFreqHz.Location = new System.Drawing.Point(77, 27);
+            this.numFreqHz.Location = new System.Drawing.Point(77, 30);
             this.numFreqHz.Margin = new System.Windows.Forms.Padding(2);
             this.numFreqHz.Maximum = new decimal(new int[] {
             10000,
@@ -201,10 +201,15 @@ namespace WavCreator
             // 
             this.numAmplitude.DecimalPlaces = 3;
             this.numAmplitude.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numAmplitude.Location = new System.Drawing.Point(77, 52);
+            this.numAmplitude.Location = new System.Drawing.Point(77, 58);
             this.numAmplitude.Margin = new System.Windows.Forms.Padding(2);
+            this.numAmplitude.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numAmplitude.Minimum = new decimal(new int[] {
-            100,
+            100000,
             0,
             0,
             -2147483648});
@@ -221,10 +226,15 @@ namespace WavCreator
             // 
             this.numOffset.DecimalPlaces = 3;
             this.numOffset.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numOffset.Location = new System.Drawing.Point(77, 77);
+            this.numOffset.Location = new System.Drawing.Point(77, 86);
             this.numOffset.Margin = new System.Windows.Forms.Padding(2);
+            this.numOffset.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numOffset.Minimum = new decimal(new int[] {
-            100,
+            100000,
             0,
             0,
             -2147483648});
@@ -241,7 +251,7 @@ namespace WavCreator
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(3, 25);
+            this.label1.Location = new System.Drawing.Point(3, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 15);
             this.label1.TabIndex = 4;
@@ -252,7 +262,7 @@ namespace WavCreator
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(3, 50);
+            this.label2.Location = new System.Drawing.Point(3, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 15);
             this.label2.TabIndex = 4;
@@ -263,7 +273,7 @@ namespace WavCreator
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(3, 75);
+            this.label3.Location = new System.Drawing.Point(3, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 15);
             this.label3.TabIndex = 4;
@@ -274,7 +284,7 @@ namespace WavCreator
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(3, 100);
+            this.label4.Location = new System.Drawing.Point(3, 112);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(28, 15);
             this.label4.TabIndex = 4;
@@ -284,12 +294,12 @@ namespace WavCreator
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button2.Location = new System.Drawing.Point(2, 127);
+            this.button2.Location = new System.Drawing.Point(2, 142);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(71, 21);
+            this.button2.Size = new System.Drawing.Size(71, 30);
             this.button2.TabIndex = 5;
-            this.button2.Text = "button2";
+            this.button2.Text = "Stop";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
